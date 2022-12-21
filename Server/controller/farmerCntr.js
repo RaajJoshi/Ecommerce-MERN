@@ -1,4 +1,6 @@
 const originalFarmer = require("../model/farmerModel");
+const originalProduct = require("../model/productModel");
+const originalOrder = require("../model/orderModel");
 const ErrorHandler = require("../utls/errorHandler");
 const catchAsyncError = require("../middleware/asyncError");
 const bcrypt = require("bcryptjs");
@@ -102,3 +104,38 @@ exports.updateProfile = catchAsyncError( async (req,res,next)=>{
     });
 
 })
+
+// Delete Farmer
+exports.deleteFarmer = catchAsyncError( async (req,res,next)=>{
+    const farmer = await originalFarmer.findById(req.params.id);
+
+    const products = await originalProduct.find({farmer:req.params.id});
+
+    products.forEach( async (prod) => {
+        await updateOrderQuantity(prod._id);
+        await prod.remove();
+    });
+
+    farmer.remove();
+
+    res.status(200).json({
+        success:true,
+        message:"Farmer removed successfully...",
+    });
+})
+async function updateOrderQuantity(id){
+    const orders = await originalOrder.find({orderStatus:"Processing"});
+
+    orders.forEach( async (odr) => {
+        odr.orderItems.forEach( async (so) => {
+            if(so.product.toString() === id.toString()){
+                var itemsPrice = so.price * so.quantity;
+                odr.itemsPrice -= itemsPrice;
+                odr.totalPrice -= itemsPrice;
+                var indx = odr.orderItems.indexOf(so);            
+                odr.orderItems.splice(indx,1);
+            }
+        });
+        odr.save({validateBeforeSave:false});
+    });
+}

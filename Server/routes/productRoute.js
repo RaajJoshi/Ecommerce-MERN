@@ -1,6 +1,6 @@
 const express = require('express');
 const { getAllProducts,createProduct, updateProduct, deleteProduct, getSingleProducts, getSearchProducts, getSomeProducts, createReview, getReviews } = require('../controller/productCntr');
-const { isAuthenticatedUser, accessAuthoriseRole, isAuthenticatedCustomer, accessAuthoriseCustomer } = require('../middleware/authoriseRole');
+const { isAuthenticatedUser, accessAuthoriseRole, isAuthenticatedCustomer, accessAuthoriseCustomer, isAuthenticatedAdmin, accessAuthoriseAdmin } = require('../middleware/authoriseRole');
 
 const router = express.Router();
 
@@ -17,7 +17,8 @@ router.route("/product/new").post(isAuthenticatedUser, createProduct);
 
 router.route("/product/:id").put(updateProduct);
 
-router.route("/product/:id").delete(deleteProduct);
+// In Testing
+router.route("/deleteProduct/:id").delete(isAuthenticatedAdmin, accessAuthoriseAdmin("admin"), deleteProduct);
 
 router.route("/reviewProduct").put(isAuthenticatedCustomer, createReview);
 

@@ -1,6 +1,6 @@
 const express = require('express');
-const { createCustomer, loginCustomer, logoutCustomer, getCustomerDetails, updateCustomerPassword, updateCustomerProfile } = require('../controller/customerCntr');
-const { isAuthenticatedCustomer } = require('../middleware/authoriseRole');
+const { createCustomer, loginCustomer, logoutCustomer, getCustomerDetails, updateCustomerPassword, updateCustomerProfile, deleteCustomer } = require('../controller/customerCntr');
+const { isAuthenticatedCustomer, isAuthenticatedUser, isAuthenticatedAdmin, accessAuthoriseAdmin } = require('../middleware/authoriseRole');
 
 
 
@@ -17,5 +17,8 @@ router.route("/oneCustomer").get(isAuthenticatedCustomer, getCustomerDetails);
 router.route("/updateCustomerPass").put(isAuthenticatedCustomer, updateCustomerPassword);
 
 router.route("/updateCustProfile").put(isAuthenticatedCustomer, updateCustomerProfile);
+
+// In Testing
+router.route("/deleteCustomer/:id").delete(isAuthenticatedAdmin, accessAuthoriseAdmin("admin"), deleteCustomer);
 
 module.exports = router

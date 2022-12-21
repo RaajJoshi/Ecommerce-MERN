@@ -1,4 +1,5 @@
 const originalProduct = require("../model/productModel");
+const originalOrder = require("../model/orderModel");
 const ErrorHandler = require("../utls/errorHandler");
 const catchAsyncError = require("../middleware/asyncError");
 const ApiFeatures = require("../utls/apiFeatures");
@@ -80,15 +81,26 @@ exports.updateProduct = async (req,res,next)=>{
 exports.deleteProduct = async (req,res,next)=>{
     const product = await originalProduct.findById(req.params.id);
 
-    if(!product){
-        return next(new ErrorHandler("Product not found !!",404));
-    }
+    const orders = await originalOrder.find({orderStatus:"Processing"});
+
+    orders.forEach( async (odr) => {
+        odr.orderItems.forEach( async (so) => {
+            if(so.product.toString() === req.params.id.toString()){
+                var itemsPrice = so.price * so.quantity;
+                odr.itemsPrice -= itemsPrice;
+                odr.totalPrice -= itemsPrice;
+                var indx = odr.orderItems.indexOf(so);            
+                odr.orderItems.splice(indx,1);
+            }
+        });
+        odr.save({validateBeforeSave:false});
+    });
 
     await product.remove();
 
     res.status(200).json({
         success:true,
-        message:"Product removed successfully..."
+        message:"Product removed successfully...",
     })
 }
 

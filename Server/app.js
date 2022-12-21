@@ -9,9 +9,18 @@ app.use(cookieParser());
 const product = require("./routes/productRoute");
 const farmer = require("./routes/farmerRoutes");
 const customer = require("./routes/customerRoutes");
+const order = require('./routes/orderRoutes');
+const admin = require("./routes/adminRoutes");
+
 app.use("/api/v1",product);
 app.use("/api/v1",farmer);
 app.use("/api/v1",customer);
+app.use("/api/v1",order);
+app.use("/api/v1",admin);
+
+app.get('/',(req,res)=>{
+    res.send(`Hello wolrd from node`);
+});
 
 app.use(errorMiddleware);
 
