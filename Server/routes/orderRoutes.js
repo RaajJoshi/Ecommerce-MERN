@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route("/makeOrder").post(isAuthenticatedCustomer, newOrder);
 
-router.route("/allOrders").get(isAuthenticatedUser, accessAuthoriseRole("farmer"), getAllOrders);
+router.route("/allOrders").get(getAllOrders);
 
 router.route("/myOrders").get(isAuthenticatedCustomer, getMyOrders);
 

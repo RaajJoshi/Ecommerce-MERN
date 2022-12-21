@@ -1,8 +1,0 @@
-"name":"ABC",
-    "email":"",
-    "password":"abc12345",
-    "phoneno":1236547890,
-    "city":"Nadiad",
-    "role":"farmer"
-
-mainPassword: def98765
