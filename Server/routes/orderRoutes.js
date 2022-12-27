@@ -12,7 +12,6 @@ router.route("/myOrders").get(isAuthenticatedCustomer, getMyOrders);
 
 router.route("/updateOrder/:id").put(isAuthenticatedUser, updateOrder);
 
-// In Testing
 router.route("/deleteOrder/:id").delete(isAuthenticatedAdmin, accessAuthoriseAdmin("admin"), deleteOrder);
 
 module.exports = router

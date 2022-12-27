@@ -18,7 +18,6 @@ router.route("/updateCustomerPass").put(isAuthenticatedCustomer, updateCustomerP
 
 router.route("/updateCustProfile").put(isAuthenticatedCustomer, updateCustomerProfile);
 
-// In Testing
 router.route("/deleteCustomer/:id").delete(isAuthenticatedAdmin, accessAuthoriseAdmin("admin"), deleteCustomer);
 
 module.exports = router

@@ -11,12 +11,14 @@ const farmer = require("./routes/farmerRoutes");
 const customer = require("./routes/customerRoutes");
 const order = require('./routes/orderRoutes');
 const admin = require("./routes/adminRoutes");
+const user = require("./routes/userRoutes");
 
 app.use("/api/v1",product);
 app.use("/api/v1",farmer);
 app.use("/api/v1",customer);
 app.use("/api/v1",order);
 app.use("/api/v1",admin);
+app.use("/api/v1",user);
 
 app.get('/',(req,res)=>{
     res.send(`Hello wolrd from node`);

@@ -1,5 +1,5 @@
-const sendToken = (Farmer,statusCode,res) => {
-    const token = Farmer.getJWTToken();
+const sendToken = (User,statusCode,res) => {
+    const token = User.getJWTToken();
 
     // options for cookie
     const options = {
@@ -11,7 +11,7 @@ const sendToken = (Farmer,statusCode,res) => {
 
     res.status(statusCode).cookie("tokens",token,options).json({
         success:true,
-        Farmer,
+        User,
         token,
     });
 };

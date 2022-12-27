@@ -17,7 +17,6 @@ router.route("/product/new").post(isAuthenticatedUser, createProduct);
 
 router.route("/product/:id").put(updateProduct);
 
-// In Testing
 router.route("/deleteProduct/:id").delete(isAuthenticatedAdmin, accessAuthoriseAdmin("admin"), deleteProduct);
 
 router.route("/reviewProduct").put(isAuthenticatedCustomer, createReview);
