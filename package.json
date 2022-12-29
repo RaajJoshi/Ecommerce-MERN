@@ -5,8 +5,8 @@
   "main": "server/auth.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/auth.js",
-    "dev": "nodemon server/auth.js"
+    "start": "node Server/auth.js",
+    "dev": "nodemon Server/auth.js"
   },
   "author": "",
   "license": "ISC",

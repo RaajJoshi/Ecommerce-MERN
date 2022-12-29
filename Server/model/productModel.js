@@ -1,16 +1,24 @@
 const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
+    category:{
+        type:String,
+        required:[true,"Plaese enter category"]
+    },
     name:{
         type:String,
         required:[true,"Plaese enter name"]
     },
+    description:{
+        type:String,
+        required:[true,"Plese enter description"]
+    },
     quantity:{
-        type:Number,
+        type:String,
         required:[true,"Please enter quantity"]
     },
     price:{
-        type:Number,
+        type:String,
         required:[true,"Please enter price"]
     },
     ratings:{
@@ -41,7 +49,7 @@ const productSchema = mongoose.Schema({
     ],
     farmer:{
         type:mongoose.Schema.ObjectId,
-        ref:"Farmer",
+        ref:"User",
         required:true,
     }
 })

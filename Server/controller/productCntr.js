@@ -6,8 +6,8 @@ const ApiFeatures = require("../utls/apiFeatures");
 
 // create product
 exports.createProduct = catchAsyncError(async (req,res,next)=>{
-    req.body.farmer = req.farmer.id;
-    //console.log(req.farmer.id);
+    req.body.farmer = req.user.id;
+    console.log(req.user.id);
 
     const Product = await originalProduct.create(req.body);
 
