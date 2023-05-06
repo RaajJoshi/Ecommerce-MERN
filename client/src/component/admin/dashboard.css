@@ -1,0 +1,112 @@
+.dashboard {
+  width: 100vw;
+  height: 100%;
+  grid-template-columns: 1fr 5fr;
+  position: absolute;
+  /* background-color: red; */
+}
+  
+  .dashboardContainer {
+    /* background-color: orange; */
+    height: 650px;
+    width: 800px;
+    margin: 10% 50%;
+  }
+  
+  .dashboardContainer > h1 {
+    color: rgba(0, 0, 0, 0.733);
+    font: 300 2rem "Roboto";
+    text-align: center;
+    width: 50%;
+    padding: 1.5rem;
+    margin: auto;
+  }
+  
+  .dashboardSummary {
+    margin: 5rem 0;
+    height: 90%;
+    /* background-color: gray; */
+  }
+  
+  .banner > p {
+    background-color: rgba(1, 172, 27, 0.766);
+    color: white;
+    font: 300 1.3rem "Roboto";
+    text-align: center;
+    margin-top: -6rem;
+    padding: 1.5rem;
+  }
+
+  .dashboardSummaryBox2 {
+    display: flex;
+    flex-direction: row;
+    /* background-color: green; */
+    width: 800px;
+    height: 490px;
+    display: flex;
+    flex-direction: column;
+  }
+  .totals,
+  .category {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .totals > a,
+  .category > a {
+    color: rgb(0, 0, 0);
+    font: 300 2rem "Roboto";
+    text-align: center;
+    background-color: rgb(231, 179, 39);
+    text-decoration: none;
+    padding: 1.5rem;
+    width: 8vmax;
+    height: 8vmax;
+    margin: 1.5rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .dashboardSummaryBox2 > a:first-child {
+    background-color: rgb(255, 110, 110);
+    color: rgb(255, 255, 255);
+  }
+  
+  .dashboardSummaryBox2 > a:last-child {
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+  }
+  
+  .lineChart {
+    width: 80%;
+    margin: auto;
+  }
+  
+  .doughnutChart {
+    width: 30vmax;
+    margin: auto;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .dashboard {
+      grid-template-columns: 1fr;
+    }
+  
+    .dashboardContainer {
+      border-left: none;
+    }
+  
+    .dashboardSummary > div > p {
+      margin: 0;
+    }
+  
+    .dashboardSummaryBox2 > a {
+      padding: 0.5rem;
+      margin: 1rem;
+      font: 300 0.9rem "Roboto";
+    }
+  }

@@ -1,26 +1,25 @@
 const express = require('express');
 const { getAllProducts,createProduct, updateProduct, deleteProduct, getSingleProducts, getSearchProducts, getSomeProducts, createReview, getReviews } = require('../controller/productCntr');
-const { isAuthenticatedUser, accessAuthoriseRole, isAuthenticatedCustomer, accessAuthoriseCustomer, isAuthenticatedAdmin, accessAuthoriseAdmin } = require('../middleware/authoriseRole');
+const { isAuthenticatedUser, accessAuthoriseRole, isAuthenticatedCustomer, accessAuthoriseCustomer, isAuthenticatedAdmin, accessAuthoriseAdmin, isAuthenticatedFarmer } = require('../middleware/authoriseRole');
 
 const router = express.Router();
 
 router.route("/products").get(getAllProducts);
 
-// Dummy Route
-router.route("/someproducts").get(isAuthenticatedUser, accessAuthoriseRole("farmer"),  getSomeProducts);
+router.route("/someproducts").get(isAuthenticatedFarmer, accessAuthoriseRole("farmer"), getSomeProducts);
 
-router.route("/product").get(getSearchProducts);
+router.route("/searchProduct").get(getSearchProducts);
 
 router.route("/product/:id").get(getSingleProducts);
 
-router.route("/product/new").post(isAuthenticatedUser, createProduct);
+router.route("/product/new").post(isAuthenticatedFarmer, accessAuthoriseRole("farmer"), createProduct);
 
 router.route("/product/:id").put(updateProduct);
 
-router.route("/deleteProduct/:id").delete(isAuthenticatedAdmin, accessAuthoriseAdmin("admin"), deleteProduct);
+router.route("/deleteProduct/:id").delete( deleteProduct);
 
 router.route("/reviewProduct").put(isAuthenticatedCustomer, createReview);
 
-router.route("/getReviews").get(isAuthenticatedUser, getReviews);
+router.route("/getReviews").get(isAuthenticatedFarmer, getReviews);
 
 module.exports = router

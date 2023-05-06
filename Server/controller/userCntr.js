@@ -60,7 +60,7 @@ exports.logoutUser = catchAsyncError(async (req,res,next)=>{
 
 // Get User Details
 exports.getUserDetails = catchAsyncError( async (req,res,next)=>{
-    const oneUser = await originalUser.findById(req.user.id);
+    const oneUser = await originalUser.findById(req.params.id);
 
     res.status(200).json({
         success:true,

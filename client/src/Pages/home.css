@@ -1,0 +1,23 @@
+.headerTitle {
+    font-size: 2rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 15px;
+}
+.info > p {
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(124, 52, 52);
+}
+.info > p > a {
+    color: green;
+}
+
+.CarouselImage {
+    width: 1500px;
+    height: 550px;
+}

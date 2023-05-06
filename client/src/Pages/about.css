@@ -1,0 +1,57 @@
+.background {
+    background-color: rgb(48, 80, 6);
+    background-blend-mode: darken;
+    background-size: cover;
+}
+ 
+.firstsection {
+    height: 60vh;
+}
+
+.box-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    max-width: 80%;
+    margin: auto;
+    height: 90%;
+}
+ 
+.firstHalf {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-big {
+    font-family: "Piazzolla", serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+ 
+.text-small {
+    margin-top: 2rem;
+    font-size: 18px;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+ 
+.detail .box {
+    width: 300px;
+    margin: 8px 20px 8px 20px;
+    padding: 10px;
+    border: 2px solid rgb(48, 80, 6);
+    border-radius: 14px;
+}

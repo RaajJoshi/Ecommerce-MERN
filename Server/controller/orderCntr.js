@@ -9,26 +9,29 @@ exports.newOrder = catchAsyncErrors( async (req,res,next)=>{
         transportInfo,
         orderItems,
         paymentInfo,
+        customer,
         itemsPrice,
         taxPrice,
         transportPrice,
         totalPrice,
     } = req.body;
 
+    console.log(req.body);
+
     const order = await originalOrder.create({
         transportInfo,
         orderItems,
         paymentInfo,
+        customer,
         itemsPrice,
         taxPrice,
         transportPrice,
         totalPrice,
-        customer:req.customer._id,
         paidAt:Date.now(),
     });
 
     order.orderItems.forEach( async (odr) => {
-        await updateStock(odr.product,odr.quantity);
+        await updateStock(odr.product,odr.quant);
     });
 
     res.status(201).json({
@@ -37,6 +40,26 @@ exports.newOrder = catchAsyncErrors( async (req,res,next)=>{
     });
 
 });
+
+// get Single Order
+exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
+    
+    console.log(req.params.id);
+    const order = await originalOrder.findById(req.params.id).populate(
+        "customer",
+        "name"
+    );
+  
+    if (!order) {
+      return next(new ErrorHandler("Order not found with this Id", 404));
+    }
+  
+    res.status(200).json({
+      success: true,
+      order,
+    });
+  });
+  
 
 // Get All Orders
 exports.getAllOrders = catchAsyncErrors( async (req,res,next)=>{
@@ -53,6 +76,7 @@ exports.getAllOrders = catchAsyncErrors( async (req,res,next)=>{
 
 // Get Own Orders
 exports.getMyOrders = catchAsyncErrors( async (req,res,next)=>{
+    console.log("Customer : ",req.customer._id);
     const orders = await originalOrder.find({customer:req.customer._id}).populate(
         "customer",
         "name email"
@@ -97,7 +121,7 @@ exports.deleteOrder = catchAsyncErrors( async (req,res,next)=>{
     }
 
     order.orderItems.forEach( async (odr) => {
-        await updateStockDelete(odr.product,odr.quantity);
+        await updateStockDelete(odr.product,odr.quant);
     });
 
     await order.remove();

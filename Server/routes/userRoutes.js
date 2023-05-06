@@ -10,7 +10,7 @@ router.route("/user/login").post(loginUser);
 
 router.route("/user/logout").get(logoutUser);
 
-router.route("/oneUser").get(isAuthenticatedUser, getUserDetails);
+router.route("/oneUser/:id").get( getUserDetails);
 
 // Dummy Routes
 router.route("/allUsers").get(getAllUserDetails);

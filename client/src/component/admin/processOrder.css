@@ -1,0 +1,132 @@
+.updateOrderContainer {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    /* display: grid;
+    grid-template-columns: 0fr 2fr; */
+    position: absolute;
+  }
+
+  .processOrderContainer {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(168, 168, 168, 0.211);
+    border-left: 1px solid rgba(0, 0, 0, 0.158);
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+
+  .infoContainer {
+    height: 100vh;
+    /* width: 30%; */
+    border-right: 1px solid black;
+    display: grid;
+    grid-template-columns: 6fr 3fr;
+  }
+
+  .orderInfo {
+    padding: 7vmax;
+    padding-bottom: 0%;
+  }
+
+  .orderInfo > p {
+    font: 400 1.8vmax "Roboto";
+  }
+
+  .itemContainer {
+    height: 100vh;
+    /* width: 40%; */
+    border-right: 1px solid black;
+    display: grid;
+    grid-template-columns: 6fr 3fr;
+  }
+
+  .confirmItems > p {
+    font: 300 1.8vmax "Roboto";
+  }
+  
+  .confirmItems {
+    padding-left: 50%;
+    padding-top: 6vmax;
+  }
+
+  .confirmItemsContainer {
+    max-height: 20vmax;
+    overflow-y: auto;
+  }
+  .confirmItemsContainer > div {
+    display: flex;
+    font: 400 1vmax "Roboto";
+    align-items: center;
+    justify-content: space-between;
+    margin: 2vmax 0;
+  }
+  .confirmItemsContainer > div > img {
+    width: 3vmax;
+  }
+  .confirmItemsContainer > div > a {
+    color: #575757;
+    margin: 0 2vmax;
+    width: 60%;
+    text-decoration: none;
+  }
+  .confirmItemsContainer > div > span {
+    font: 100 1vmax "Roboto";
+    color: #5e5e5e;
+  }
+
+  .formContainer {
+    height: 100vh;
+    /* width: 30%; */
+    display: grid;
+    grid-template-columns: 6fr 3fr;
+    align-items: center;
+    text-align: center;
+  }
+
+.updateOrderForm {
+  width: 90%;
+  height: 40%;
+  padding: 3vmax;
+  margin-left: 15%;
+  background-color: white;
+  }
+  
+  .updateOrderForm > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+  .updateOrderForm > div > select {
+    padding: 1vmax 4vmax;
+    margin: 2rem 0;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    font: 300 0.9vmax cursive;
+    outline: none;
+  }
+  
+  .updateOrderForm > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623);
+  }
+  
+  @media screen and (max-width: 600px) {
+    .updateOrderForm {
+      padding: 5vmax;
+    }
+  
+    .updateOrderForm > div > select {
+      padding: 2.5vmax 5vmax;
+      font: 300 1.7vmax cursive;
+    }
+  
+    .updateOrderForm > div > svg {
+      font-size: 2.8vmax;
+    }
+  }

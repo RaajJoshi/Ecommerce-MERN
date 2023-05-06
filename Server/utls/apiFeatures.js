@@ -18,10 +18,11 @@ class ApiFeatures {
 
     filter() {
         const queryCopy = { ...this.querystr };
-
+        const removeFields = ["keyword", "limit"];
+        removeFields.forEach((key) => delete queryCopy[key]);
         console.log(queryCopy);
         let newQuery = JSON.stringify(queryCopy);
-        newQuery = newQuery.replace(/\b(gt|gte|lt|lte)\b/g, key=> `$${key}`);
+        newQuery = newQuery.replace(/\b(gt|gte|lt|lte)\b/g, (key)=> `$${key}`);
         this.query = this.query.find(JSON.parse(newQuery));
         console.log(queryCopy);
         return this;
